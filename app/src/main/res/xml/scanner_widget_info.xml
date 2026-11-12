@@ -3,6 +3,7 @@
     android:minWidth="110dp"
     android:minHeight="110dp"
     android:initialLayout="@layout/widget_scanner"
+    android:previewImage="@drawable/ic_qr_widget"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
     android:description="@string/scanner_widget_description"
