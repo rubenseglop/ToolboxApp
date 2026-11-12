@@ -1,0 +1,24 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Cuerpo de la linterna -->
+    <path
+        android:fillColor="#FF9AA1AC"
+        android:pathData="M13.8,5.2L18.8,10.2L9.2,19.8L4.2,14.8Z" />
+    <path
+        android:fillColor="#FF68717D"
+        android:pathData="M4.2,14.8L9.2,19.8L7.1,21.9L2.1,16.9Z" />
+    <!-- Cabezal -->
+    <path
+        android:fillColor="#FF454C56"
+        android:pathData="M13.2,2.4L16.1,0.9L23.1,7.9L21.6,10.8L18.8,10.2L13.8,5.2Z" />
+    <path
+        android:fillColor="#FFD8DCE2"
+        android:pathData="M16.1,2.9L21.1,7.9L19.9,9.1L14.9,4.1Z" />
+    <!-- Tapón trasero -->
+    <path
+        android:fillColor="#FF555D68"
+        android:pathData="M2.1,16.9L4.2,14.8L9.2,19.8L7.1,21.9Z" />
+</vector>
