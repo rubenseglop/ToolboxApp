@@ -27,7 +27,7 @@
 
         <receiver
             android:name=".TorchWidgetProvider"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -38,7 +38,7 @@
 
         <receiver
             android:name=".ScannerWidgetProvider"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -62,5 +62,4 @@
         </service>
 
     </application>
-
 </manifest>
