@@ -72,25 +72,27 @@ private fun TorchContent() {
         return
     }
 
-    var isOn by remember { mutableStateOf(false) }
+    var isOn by remember { mutableStateOf(TorchController.isOn(context)) }
     var available by remember { mutableStateOf(true) }
     var sos by remember { mutableStateOf(false) }
 
-    fun setTorch(on: Boolean) {
+    fun setTorch(on: Boolean, notifyOtherControls: Boolean = true) {
         try {
             cm.setTorchMode(cameraId, on)
+            TorchController.recordState(context, on, notifyOtherControls)
         } catch (_: Exception) {
             // Cámara en uso por otra app, etc. El callback actualizará el estado real.
         }
     }
 
-    // Refleja el estado real del flash (por ejemplo si otra app lo apaga).
+    // Refleja el estado real del flash y mantiene sincronizados el widget y el botón rápido.
     DisposableEffect(cameraId) {
         val callback = object : CameraManager.TorchCallback() {
             override fun onTorchModeChanged(id: String, enabled: Boolean) {
                 if (id == cameraId) {
                     isOn = enabled
                     available = true
+                    TorchController.recordState(context, enabled)
                 }
             }
 
@@ -107,7 +109,7 @@ private fun TorchContent() {
             try {
                 while (true) {
                     SOS_PATTERN.forEachIndexed { i, ms ->
-                        setTorch(i % 2 == 0)
+                        setTorch(i % 2 == 0, notifyOtherControls = false)
                         delay(ms)
                     }
                 }
