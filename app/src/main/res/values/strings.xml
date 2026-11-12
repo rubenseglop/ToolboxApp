@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Utilidades</string>
+    <string name="torch_tile_label">Linterna</string>
+    <string name="torch_widget_description">Botón para encender y apagar la linterna con un toque</string>
 </resources>
