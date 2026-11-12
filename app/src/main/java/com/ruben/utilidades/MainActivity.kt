@@ -38,11 +38,16 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val openScanner = intent.getBooleanExtra(EXTRA_OPEN_SCANNER, false)
         setContent {
             UtilidadesTheme {
-                AppRoot()
+                AppRoot(openScannerInitially = openScanner)
             }
         }
+    }
+
+    companion object {
+        const val EXTRA_OPEN_SCANNER = "com.ruben.utilidades.OPEN_SCANNER"
     }
 }
 
@@ -55,8 +60,8 @@ private enum class Tool(val label: String, val icon: ImageVector) {
 }
 
 @Composable
-private fun AppRoot() {
-    var selected by rememberSaveable { mutableIntStateOf(0) }
+private fun AppRoot(openScannerInitially: Boolean = false) {
+    var selected by rememberSaveable { mutableIntStateOf(if (openScannerInitially) 1 else 0) }
     val tools = Tool.entries
 
     Scaffold(
@@ -74,8 +79,6 @@ private fun AppRoot() {
         },
     ) { innerPadding ->
         Box(Modifier.fillMaxSize().padding(innerPadding)) {
-            // Solo se compone la herramienta activa: así la cámara y los sensores
-            // se liberan automáticamente al cambiar de pestaña.
             when (tools[selected]) {
                 Tool.Lupa -> MagnifierScreen()
                 Tool.Escaner -> ScannerScreen()
